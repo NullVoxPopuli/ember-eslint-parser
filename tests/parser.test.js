@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { parseForESLint } from '../src/parser/gjs-gts-parser.js';
-import { traverse } from '../src/parser/transforms.js';
+import { parseForESLint } from '../src/parser/gjs-gts-parser';
+import { traverse } from '../src/parser/transforms';
 import { SourceCode } from 'eslint';
 import { visitorKeys as tsVisitors } from '@typescript-eslint/visitor-keys';
 import { visitorKeys as glimmerVisitorKeys } from '@glimmer/syntax';
