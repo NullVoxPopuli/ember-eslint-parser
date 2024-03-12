@@ -312,7 +312,7 @@ module.exports.preprocessGlimmerTemplates = function preprocessGlimmerTemplates(
 
       if (n.type === 'ElementNode') {
         n.name = n.tag;
-        n.parts = n.parts.map((p) => {
+        n.parts = [n.path.head].map((p) => {
           const range = [
             offset + docLines.positionToOffset(p.loc.start),
             offset + docLines.positionToOffset(p.loc.end),
@@ -323,9 +323,9 @@ module.exports.preprocessGlimmerTemplates = function preprocessGlimmerTemplates(
           };
           return {
             ...p,
+            name: p.original,
             parent: n,
             type: 'GlimmerElementNodePart',
-            name: p.value,
             range,
             loc,
           };
@@ -333,8 +333,7 @@ module.exports.preprocessGlimmerTemplates = function preprocessGlimmerTemplates(
       }
 
       if ('blockParams' in n) {
-        // program does have blockParams but not blockParamNodes
-        n.params = (n.blockParamNodes || []).map((p) => {
+        n.params = (n.params || []).map((p) => {
           const range = [
             offset + docLines.positionToOffset(p.loc.start),
             offset + docLines.positionToOffset(p.loc.end),
@@ -345,8 +344,9 @@ module.exports.preprocessGlimmerTemplates = function preprocessGlimmerTemplates(
           };
           return {
             ...p,
+            type: 'BlockParam',
+            name: p.original,
             parent: n,
-            name: p.value,
             range,
             loc,
           };
