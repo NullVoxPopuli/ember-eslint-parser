@@ -515,7 +515,7 @@ module.exports.convertAst = function convertAst(result, preprocessedResult, visi
       for (const [i, b] of node.params.entries()) {
         const v = new Variable(b.name, scope);
         v.identifiers.push(b);
-        v.defs.push(new Definition('Parameter', b, node, node, i, 'Block Param'));
+        v.defs.push(new Definition('Parameter', b, b, node, i, 'Block Param'));
         scope.variables.push(v);
         scope.set.set(b.name, v);
         vars.push(v);
