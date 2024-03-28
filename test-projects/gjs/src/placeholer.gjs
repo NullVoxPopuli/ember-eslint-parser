@@ -5,7 +5,7 @@ import { service } from 'limber-ui';
 const orGlimdown = (format) => format || 'glimdown';
 
 export const Placeholder = <template>
-  {{#let (service "editor") as |context|}}
+  {{#let (service "editor") as |item context|}}
     <label class="sr-only" for="initial-editor">
       Glimmer + Markdown Code Editor
     </label>
